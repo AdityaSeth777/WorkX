@@ -1,43 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelance Marketplace</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        nav a {
+            color: #333;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .job-listing {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+        .job-listing h2 {
+            margin: 0;
+        }
+        .profile, .login-form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .profile h2, .login-form h2 {
+            margin: 0 0 20px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        .form-group button {
+            padding: 10px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<header>
+    <h1>Freelance Marketplace</h1>
+</header>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Profile</a>
+    <a href="#">Job Listings</a>
+    <a href="#">Login</a>
+</nav>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+<main id="content">
+    <!-- Home Section -->
+    <section id="home">
+        <h2>Welcome to the Freelance Marketplace</h2>
+        <p>Find the best freelance jobs and hire top talent for your projects.</p>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" style="display: none;">
+        <div class="profile">
+            <h2>Profile</h2>
+            <p>Name: John Doe</p>
+            <p>Email: john.doe@example.com</p>
+            <p>Skills: Web Development, Graphic Design</p>
+        </div>
+    </section>
+
+    <!-- Job Listings Section -->
+    <section id="job-listings" style="display: none;">
+        <h2>Job Listings</h2>
+        <div class="job-listing">
+            <h2>Frontend Developer Needed</h2>
+            <p>Looking for an experienced frontend developer to build a responsive website.</p>
+            <button>Apply Now</button>
+        </div>
+        <div class="job-listing">
+            <h2>Graphic Designer Required</h2>
+            <p>Need a graphic designer for logo and brand identity design.</p>
+            <button>Apply Now</button>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login" style="display: none;">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<script>
+    const links = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('main section');
+
+    links.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const target = this.textContent.toLowerCase();
+            sections.forEach(section => {
+                if (section.id === target) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+</body>
 </html>
