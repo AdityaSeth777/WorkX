@@ -144,7 +144,7 @@
     links.forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
-            const target = this.textContent.toLowerCase();
+            const target = this.textContent.toLowerCase().replace(' ', '-');
             sections.forEach(section => {
                 if (section.id === target) {
                     section.style.display = 'block';

@@ -10,13 +10,17 @@ import Footer from './components/Footer';
 function App() {
   return (
     <Router>
+      <div style={{minHeight: '100vh', position: 'relative'}}>
       <Header />
+      <div style={{ paddingBottom: '50px'}}>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/profile" component={Profile} />
         <Route path="/job-listings" component={JobListings} />
       </Switch>
+      </div>
       <Footer />
+      </div>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
