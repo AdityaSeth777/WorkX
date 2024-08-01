@@ -1,4 +1,3 @@
-// routes/users.js
 const express = require('express');
 const auth = require('../middleware/authMiddleware');
 const User = require('../models/User');

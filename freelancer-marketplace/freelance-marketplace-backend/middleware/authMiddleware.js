@@ -1,17 +1,19 @@
-// middleware/authMiddleware.js
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const admin = require('../config/firebaseAdmin');
 
-module.exports = function (req, res, next) {
-    const token = req.header('x-auth-token');
-    if (!token) {
-        return res.status(401).json({ message: 'No token, authorization denied' });
-    }
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded.user;
-        next();
-    } catch (error) {
-        res.status(401).json({ message: 'Token is not valid' });
-    }
-};
+async function authMiddleware(req, res, next) {
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ message: 'No token provided' });
+  }
+
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    req.user = decodedToken;
+    next();
+  } catch (error) {
+    return res.status(403).json({ message: 'Invalid token' });
+  }
+}
+
+module.exports = authMiddleware;

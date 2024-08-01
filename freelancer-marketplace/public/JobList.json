@@ -1,0 +1,14 @@
+{
+    "jobs": [
+        {
+            "id": 1,
+            "title": "Frontend Developer Needed",
+            "description": "Looking for an experienced frontend developer to build a responsive website."
+        },
+        {
+            "id": 2,
+            "title": "Graphic Designer Required",
+            "description": "Need a graphic designer for logo and brand identity design."
+        }
+    ]
+}

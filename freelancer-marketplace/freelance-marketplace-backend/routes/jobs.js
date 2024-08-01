@@ -1,4 +1,3 @@
-// routes/jobs.js
 const express = require('express');
 const auth = require('../middleware/authMiddleware');
 const Job = require('../models/Job');
