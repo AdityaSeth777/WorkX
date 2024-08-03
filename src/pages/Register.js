@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { auth } from '../firebase';
+import { useAuth } from '../AuthContext';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { register } = useAuth();
 
   const handleRegister = async () => {
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
+      await register(email, password);
       window.location.href = '/profile';
     } catch (error) {
       console.error("Error registering:", error);
@@ -29,9 +30,4 @@ function Register() {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
-      <button onClick={handleRegister}>Register</button>
-    </div>
-  );
-}
-
-export default Register;
+      <

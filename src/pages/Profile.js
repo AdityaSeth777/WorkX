@@ -1,21 +1,22 @@
 import React from 'react';
+import { useAuth } from '../AuthContext';
 
 function Profile() {
-    // Mocked user data for John Doe
-    const user = {
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        skills: 'Web Development, Graphic Design'
-    };
+  const { currentUser } = useAuth();
 
-    return (
-        <main style={{ padding: '20px', backgroundColor: '#333', color: '#fff', borderRadius: '8px' }}>
-            <h2 style={{ color: '#61dafb' }}>Profile</h2>
-            <p><strong>Name:</strong> {user.name}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Skills:</strong> {user.skills}</p>
-        </main>
-    );
+  return (
+    <div>
+      <h1>Profile</h1>
+      {currentUser ? (
+        <div>
+          <p>Name: {currentUser.displayName}</p>
+          <p>Email: {currentUser.email}</p>
+        </div>
+      ) : (
+        <p>Please log in to view your profile.</p>
+      )}
+    </div>
+  );
 }
 
 export default Profile;
