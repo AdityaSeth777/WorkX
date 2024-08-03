@@ -12,7 +12,7 @@ nav {
 
 a, button {
   color: white;
-  background-color: #61dafb;
+  background-color: #220ce9;
   padding: 10px;
   text-decoration: none;
   border: none;
@@ -20,7 +20,7 @@ a, button {
 }
 
 a:hover, button:hover {
-  background-color: #21a1f1;
+  background-color: #e70f0f;
 }
 
 div {

@@ -5,12 +5,11 @@ function Home() {
   return (
     <div className="home">
       <header className="home-header">
-        <h1>Welcome to Our Job Portal</h1>
-        <p>Your one-stop destination for finding your dream job</p>
-      </header>
+        <h1>WorkX</h1>
+              </header>
       <main>
         <section className="intro">
-          <h2>Find Your Perfect Job</h2>
+          <h2> Stay Home. Find Your Perfect Job.</h2>
           <p>
             Browse through thousands of job listings, apply to the ones that match your skills and interests,
             and take the next step in your career journey.
