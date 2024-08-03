@@ -1,33 +1,49 @@
 import React, { useState } from 'react';
-import { useAuth } from '../AuthContext';
+import { auth } from '../firebase';
+import './Register.css';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { register } = useAuth();
+  const [error, setError] = useState('');
 
-  const handleRegister = async () => {
+  const handleRegister = async (event) => {
+    event.preventDefault();
     try {
-      await register(email, password);
-      window.location.href = '/profile';
+      await auth.createUserWithEmailAndPassword(email, password);
+      window.location.href = '/profile'; // Redirect to profile after successful registration
     } catch (error) {
-      console.error("Error registering:", error);
+      setError(error.message);
     }
   };
 
   return (
-    <div>
+    <div className="register">
       <h1>Register</h1>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <
+      <form onSubmit={handleRegister}>
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        {error && <p className="error">{error}</p>}
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  );
+}
+
+export default Register;

@@ -1,0 +1,40 @@
+.register {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  form {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #61dafb;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #21a1f1;
+  }
+  
+  .error {
+    color: red;
+  }
+  
