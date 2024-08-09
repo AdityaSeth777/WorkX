@@ -1,33 +1,39 @@
+// src/pages/JobListings.js
+
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
-function JobListings() {
-    const [jobs, setJobs] = useState([]);
-    const history = useHistory();
+const JobListings = () => {
+  const [jobs, setJobs] = useState([]);
+  const { currentUser } = useAuth();
 
-    useEffect(() => {
-        // Fetching job data from joblist.json
-        fetch('/joblist.json')
-            .then(response => response.json())
-            .then(data => setJobs(data.jobs));
-    }, []);
+  useEffect(() => {
+    fetch('/jobs')
+      .then(res => res.json())
+      .then(data => setJobs(data));
+  }, []);
 
-    const handleApply = (jobId) => {
-        history.push(`/apply/${jobId}`);
-    };
+  const applyForJob = (jobId) => {
+    fetch(`/jobs/apply/${jobId}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${currentUser?.token}`
+      }
+    }).then(res => res.json())
+      .then(data => alert(data.message));
+  };
 
-    return (
-        <main style={{ padding: '20px', backgroundColor: '#282c34', color: '#fff', borderRadius: '8px' }}>
-            <h2 style={{ color: '#61dafb' }}>Job Listings</h2>
-            {jobs.map(job => (
-                <div key={job.id} style={{ backgroundColor: '#333', padding: '15px', marginBottom: '10px', borderRadius: '8px' }}>
-                    <h3>{job.title}</h3>
-                    <p>{job.description}</p>
-                    <button onClick={() => handleApply(job.id)} style={{ backgroundColor: '#61dafb', color: '#000', border: 'none', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer' }}>Apply Now</button>
-                </div>
-            ))}
-        </main>
-    );
-}
+  return (
+    <div className="job-listings">
+      {jobs.map(job => (
+        <div key={job._id} className="job">
+          <h3>{job.title}</h3>
+          <p>{job.description}</p>
+          <button onClick={() => applyForJob(job._id)}>Apply</button>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default JobListings;

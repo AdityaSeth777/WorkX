@@ -1,24 +1,26 @@
+// src/pages/Login.js
+
 import React from 'react';
 import { auth, provider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
 
-function Login() {
-  const handleGoogleSignIn = async () => {
-    try {
-      await auth.signInWithPopup(provider);
-      window.location.href = '/profile';
-    } catch (error) {
-      console.error("Error logging in with Google:", error);
-    }
+const Login = () => {
+  const handleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <button onClick={handleGoogleSignIn} style={{ fontSize: '20px', padding: '10px 20px', cursor: 'pointer' }}>
-        Sign in with Google
-      </button>
+    <div className="login">
+      <h2>Login</h2>
+      <button onClick={handleLogin}>Sign in with Google</button>
     </div>
   );
-}
+};
 
 export default Login;

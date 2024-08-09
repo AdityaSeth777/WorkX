@@ -1,14 +1,14 @@
+// src/App.js
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './pages/Home';
-import JobListings from './pages/JobListings';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import ApplyPage from './pages/ApplyPage';
+import { AuthProvider } from './AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { AuthProvider } from './AuthContext';
+import Home from './pages/Home';
+import JobListings from './pages/JobListings';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
 import './App.css';
 
 function App() {
@@ -17,12 +17,10 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/job-listings" component={JobListings} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/" exact component={Home} />
+          <Route path="/jobs" component={JobListings} />
           <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/apply/:id" component={ApplyPage} />
+          <Route path="/profile" component={Profile} />
         </Switch>
         <Footer />
       </Router>
