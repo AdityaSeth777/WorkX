@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import JobListings from './pages/JobListings';
+import Home from './pages/Homepage';
+import FreelancerDashboard from './pages/FreelancerDashboard';
+import BusinessDashboard from './pages/BusinessDashboard';
 import Login from './pages/Login';
-import Profile from './pages/Profile';
 import './App.css';
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/jobs" component={JobListings} />
           <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/freelancer-dashboard" component={FreelancerDashboard} />
+          <Route path="/business-dashboard" component={BusinessDashboard} />
         </Switch>
         <Footer />
       </Router>
