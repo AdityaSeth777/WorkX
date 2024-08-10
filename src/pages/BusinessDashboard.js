@@ -1,58 +1,43 @@
-import React from 'react';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { postJob } from '..'; // Assuming you have an API handler for posting jobs
-import './BusinessDashboard.css';
+import React, { useEffect, useState } from 'react';
+import { firestore } from '../firebase';
+import { useAuth } from '../AuthContext';
 
-const BusinessDashboard = () => {
-  const [user, setUser] = React.useState(null);
+function BusinessDashboard() {
+    const { currentUser } = useAuth();
+    const [jobs, setJobs] = useState([]);
 
-  React.useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser({
-          displayName: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
+    useEffect(() => {
+        const fetchJobs = async () => {
+            const jobListings = await firestore
+                .collection('jobListings')
+                .where('postedBy', '==', currentUser.uid)
+                .get();
+            setJobs(jobListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+        };
+        fetchJobs();
+    }, [currentUser]);
+
+    const createJobListing = async (newJob) => {
+        await firestore.collection('jobListings').add({
+            ...newJob,
+            postedBy: currentUser.uid,
         });
-      }
-    });
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const jobDetails = {
-      title: e.target.title.value,
-      description: e.target.description.value,
-      salary: e.target.salary.value,
-      currency: e.target.currency.value,
-      location: e.target.location.value,
-      type: e.target.type.value,
+        setJobs([...jobs, newJob]);
     };
-    postJob(jobDetails);
-  };
 
-  return (
-    <div className="dashboard-container">
-      <h1>Welcome, {user?.displayName}</h1>
-      <form onSubmit={handleSubmit} className="job-form">
-        <input type="text" name="title" placeholder="Job Title" required />
-        <textarea name="description" placeholder="Job Description" required></textarea>
-        <input type="number" name="salary" placeholder="Salary" required />
-        <select name="currency" required>
-          <option value="USD">USD</option>
-          <option value="INR">INR</option>
-        </select>
-        <input type="text" name="location" placeholder="Location" required />
-        <select name="type" required>
-          <option value="remote">Remote</option>
-          <option value="onsite">On-site</option>
-          <option value="hybrid">Hybrid</option>
-        </select>
-        <button type="submit">Post Job</button>
-      </form>
-    </div>
-  );
-};
+    return (
+        <div>
+            <h2>Welcome, {currentUser.displayName}</h2>
+            <h3>Your Job Postings</h3>
+            {jobs.map(job => (
+                <div key={job.id}>
+                    <h4>{job.title}</h4>
+                    <p>{job.description}</p>
+                </div>
+            ))}
+            {/* Form to create a new job */}
+        </div>
+    );
+}
 
 export default BusinessDashboard;

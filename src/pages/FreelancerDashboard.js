@@ -1,43 +1,31 @@
-// src/pages/FreelancerDashboard.js
-
 import React, { useEffect, useState } from 'react';
+import { firestore } from '../firebase';
 import { useAuth } from '../AuthContext';
-import './FreelancerDashboard.css';
 
-const FreelancerDashboard = () => {
-  const [jobs, setJobs] = useState([]);
-  const { currentUser } = useAuth();
+function FreelancerDashboard() {
+    const { currentUser } = useAuth();
+    const [jobs, setJobs] = useState([]);
 
-  useEffect(() => {
-    fetch('/jobs')
-      .then(res => res.json())
-      .then(data => setJobs(data));
-  }, []);
+    useEffect(() => {
+        const fetchJobs = async () => {
+            const jobListings = await firestore.collection('jobListings').get();
+            setJobs(jobListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+        };
+        fetchJobs();
+    }, []);
 
-  const applyForJob = (jobId) => {
-    fetch(`/jobs/apply/${jobId}`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${currentUser?.token}`
-      }
-    }).then(res => res.json())
-      .then(data => alert(data.message));
-  };
-
-  return (
-    <div className="freelancer-dashboard">
-      <h2>Available Jobs</h2>
-      <div className="job-listings">
-        {jobs.map(job => (
-          <div key={job._id} className="job">
-            <h3>{job.title}</h3>
-            <p>{job.description}</p>
-            <button onClick={() => applyForJob(job._id)}>Apply</button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+    return (
+        <div>
+            <h2>Welcome, {currentUser.displayName}</h2>
+            <h3>Available Jobs</h3>
+            {jobs.map(job => (
+                <div key={job.id}>
+                    <h4>{job.title}</h4>
+                    <p>{job.description}</p>
+                </div>
+            ))}
+        </div>
+    );
+}
 
 export default FreelancerDashboard;

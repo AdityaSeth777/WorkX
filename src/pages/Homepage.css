@@ -1,39 +1,46 @@
 /* src/pages/Homepage.css */
 
 .homepage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  min-height: 100vh;
-  background-color: #121212;
-  color: white;
-  padding: 20px;
-}
-
-.weather, .news, .currency {
+  text-align: center;
+  color: #ffffff;
   background-color: #1e1e1e;
   padding: 20px;
-  margin: 10px 0;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.live-info {
+  margin-top: 30px;
+  font-size: 1.2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-photo {
+  border-radius: 50%;
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.logout-button, .refresh-button {
+  background-color: #6a0dad;
+  color: white;
+  padding: 10px 20px;
+  border: none;
   border-radius: 5px;
-  width: 100%;
-  max-width: 600px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
 }
 
-.news-article {
-  margin-bottom: 15px;
-}
-
-.news-article h3 {
-  font-size: 1.2em;
-  margin-bottom: 5px;
-}
-
-.news-article p {
-  font-size: 1em;
-  margin-bottom: 5px;
-}
-
-.news-article a {
-  color: #ff5722;
+.logout-button:hover, .refresh-button:hover {
+  background-color: #5c0a99;
 }

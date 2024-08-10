@@ -1,33 +1,48 @@
-// src/AuthContext.js
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from './firebase';
+import { auth, provider } from './firebase';
+import { firestore } from './firebase'; // assuming firestore is set up
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+    return useContext(AuthContext);
+}
 
-export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+export function AuthProvider({ children }) {
+    const [currentUser, setCurrentUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        user.getIdTokenResult().then(idTokenResult => {
-          user.admin = idTokenResult.claims.admin;
-          setCurrentUser(user);
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const userDoc = await firestore.collection('users').doc(user.uid).get();
+                const userType = userDoc.data().userType;
+                setCurrentUser({ ...user, userType });
+            } else {
+                setCurrentUser(null);
+            }
+            setLoading(false);
         });
-      } else {
-        setCurrentUser(null);
-      }
-    });
+        return unsubscribe;
+    }, []);
 
-    return unsubscribe;
-  }, []);
+    const signInWithGoogle = () => {
+        return auth.signInWithPopup(provider);
+    };
 
-  return (
-    <AuthContext.Provider value={{ currentUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+    const signOut = () => {
+        return auth.signOut();
+    };
+
+    const value = {
+        currentUser,
+        signInWithGoogle,
+        signOut,
+    };
+
+    return (
+        <AuthContext.Provider value={value}>
+            {!loading && children}
+        </AuthContext.Provider>
+    );
+}
