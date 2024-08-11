@@ -1,114 +1,134 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p>
 
-<h3 align="center">Project Title</h3>
+## Setup
 
-<div align="center">
-
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-
-</div>
-
----
-
-<p align="center"> Few lines describing your project.
-    <br> 
-</p>
-
-## 📝 Table of Contents
-
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
-
-## 🧐 About <a name = "about"></a>
-
-Write about 1-2 paragraphs describing the purpose of your project.
-
-## 🏁 Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them.
-
-```
-Give examples
+<details>
+  <summary><strong>Frontend Setup Instructions</strong></summary>
+  
+- Fork and Clone the repo using
+```bash
+$ git clone https://github.com/Rohantech231/WorkX.git
+$ cd WorkX
 ```
 
-### Installing
+- Get the API key from [https://api.imgbb.com/](https://api.imgbb.com/) and replace it with `REACT_APP_IMGBB_API_KEY` in `.env.example`
 
-A step by step series of examples that tell you how to get a development env running.
+- Get a new API key from [https://smtpjs.com/](https://smtpjs.com/) and replace it with `REACT_APP_API_KEY` in `.env.example`
 
-Say what the step will be
+- Rename the file `.env.example` to `.env`
 
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
+- Install node dependencies
+```bash
+$ npm install
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+- Run Server at localhost using
+```bash
+$ npm start
 ```
-Give an example
-```
+  
+</details>
 
-### And coding style tests
+<details>
+  <summary><strong>Backend Setup Instructions</strong></summary>
 
-Explain what these tests test and why
-
-```
-Give an example
+- Fork and Clone the repo using
+```bash
+$ git clone https://github.com/Rohantech231/WorkX.git
+$ cd WorkX
 ```
 
-## 🎈 Usage <a name="usage"></a>
+- Change Branch to `backend` using 
+```bash
+$ git checkout backend
+```
 
-Add notes about how to use the system.
+- Setup Virtual environment
+```bash
+$ python3 -m venv env
+```
 
-## 🚀 Deployment <a name = "deployment"></a>
+- Activate the virtual environment
+```bash
+$ source env/bin/activate
+```
 
-Add additional notes about how to deploy this on a live system.
+- Install dependencies using
+```bash
+$ pip install -r requirements.txt
+```
 
-## ⛏️ Built Using <a name = "built_using"></a>
+- Make migrations using
+```bash
+$ python manage.py makemigrations
+```
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- Migrate Database
+```bash
+$ python manage.py migrate
+```
 
-## ✍️ Authors <a name = "authors"></a>
+- Create a superuser
+```bash
+$ python manage.py createsuperuser
+```
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- Run server using
+```bash
+$ python manage.py runserver
+``` 
+</details>
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+## Deployment
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+<details>
+  <summary><strong>Deploying the Application on AWS</strong></summary>
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- **Sign up for AWS:** If you don't already have an AWS account, [sign up here](https://aws.amazon.com/).
+
+- **Install AWS CLI:** Download and install the AWS CLI from [here](https://aws.amazon.com/cli/).
+
+- **Configure AWS CLI:** Run the following command to configure your AWS CLI with your credentials:
+```bash
+$ aws configure
+```
+
+- **Set up Elastic Beanstalk (EB):**
+  - Install the EB CLI using pip:
+    ```bash
+    $ pip install awsebcli
+    ```
+  - Initialize your Elastic Beanstalk application:
+    ```bash
+    $ eb init -p python-3.8 WorkX
+    ```
+    Replace `python-3.8` with your Python version.
+  
+- **Deploy the application:**
+  - Create an environment and deploy:
+    ```bash
+    $ eb create workx-env
+    $ eb deploy
+    ```
+  - To open your application in the browser:
+    ```bash
+    $ eb open
+    ```
+
+- **Monitor and manage your application:**
+  - View the status of your environment:
+    ```bash
+    $ eb status
+    ```
+  - View logs:
+    ```bash
+    $ eb logs
+    ```
+
+- **To terminate the environment:**
+  ```bash
+  $ eb terminate workx-env
+  ```
+
+For more detailed information, refer to the [AWS Elastic Beanstalk documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html).
+  
+</details>
