@@ -31,7 +31,10 @@ function MainRoutes() {
         history.push('/business-dashboard');
       }
     } else {
-      history.push('/login'); // Redirect to login if not authenticated
+      // Only redirect if the current route is not the homepage
+      if (history.location.pathname !== '/') {
+        history.push('/login');
+      }
     }
   }, [currentUser, history]);
 
@@ -44,5 +47,6 @@ function MainRoutes() {
     </Switch>
   );
 }
+
 
 export default App;

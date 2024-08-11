@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { firestore } from '../firebase';
+import { db } from '../firebase'; // Use db instead of firestore
 import { useAuth } from '../AuthContext';
 
 function BusinessDashboard() {
@@ -8,21 +8,29 @@ function BusinessDashboard() {
 
     useEffect(() => {
         const fetchJobs = async () => {
-            const jobListings = await firestore
-                .collection('jobListings')
-                .where('postedBy', '==', currentUser.uid)
-                .get();
-            setJobs(jobListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            try {
+                const jobListings = await db
+                    .collection('jobListings')
+                    .where('postedBy', '==', currentUser.uid)
+                    .get();
+                setJobs(jobListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            } catch (error) {
+                console.error("Error fetching job listings: ", error);
+            }
         };
         fetchJobs();
     }, [currentUser]);
 
     const createJobListing = async (newJob) => {
-        await firestore.collection('jobListings').add({
-            ...newJob,
-            postedBy: currentUser.uid,
-        });
-        setJobs([...jobs, newJob]);
+        try {
+            const jobRef = await db.collection('jobListings').add({
+                ...newJob,
+                postedBy: currentUser.uid,
+            });
+            setJobs([...jobs, { id: jobRef.id, ...newJob }]);
+        } catch (error) {
+            console.error("Error creating job listing: ", error);
+        }
     };
 
     return (
@@ -35,7 +43,7 @@ function BusinessDashboard() {
                     <p>{job.description}</p>
                 </div>
             ))}
-            {/* Form to create a new job */}
+            {/* Form to create a new job can be added here */}
         </div>
     );
 }

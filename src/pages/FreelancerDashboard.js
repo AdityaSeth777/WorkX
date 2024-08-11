@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { firestore } from '../firebase';
+import { db } from '../firebase'; // Import db from firebase
 import { useAuth } from '../AuthContext';
 
 function FreelancerDashboard() {
@@ -8,8 +8,12 @@ function FreelancerDashboard() {
 
     useEffect(() => {
         const fetchJobs = async () => {
-            const jobListings = await firestore.collection('jobListings').get();
-            setJobs(jobListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            try {
+                const jobListings = await db.collection('jobListings').get();
+                setJobs(jobListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            } catch (error) {
+                console.error("Error fetching job listings: ", error);
+            }
         };
         fetchJobs();
     }, []);
