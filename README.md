@@ -6,8 +6,8 @@
   
 - Fork and Clone the repo using
 ```bash
-$ git clone https://github.com/Rohantech231/WorkX.git
-$ cd WorkX
+ git clone https://github.com/Rohantech231/WorkX.git
+ cd WorkX
 ```
 
 - Get the API key from [https://api.imgbb.com/](https://api.imgbb.com/) and replace it with `REACT_APP_IMGBB_API_KEY` in `.env.example`
@@ -18,12 +18,12 @@ $ cd WorkX
 
 - Install node dependencies
 ```bash
-$ npm install
+ npm install
 ```
 
 - Run Server at localhost using
 ```bash
-$ npm start
+ npm start
 ```
   
 </details>
@@ -33,48 +33,48 @@ $ npm start
 
 - Fork and Clone the repo using
 ```bash
-$ git clone https://github.com/Rohantech231/WorkX.git
-$ cd WorkX
+ git clone https://github.com/Rohantech231/WorkX.git
+ cd WorkX
 ```
 
 - Change Branch to `backend` using 
 ```bash
-$ git checkout backend
+ git checkout backend
 ```
 
 - Setup Virtual environment
 ```bash
-$ python3 -m venv env
+ python3 -m venv env
 ```
 
 - Activate the virtual environment
 ```bash
-$ source env/bin/activate
+ source env/bin/activate
 ```
 
 - Install dependencies using
 ```bash
-$ pip install -r requirements.txt
+ pip install -r requirements.txt
 ```
 
 - Make migrations using
 ```bash
-$ python manage.py makemigrations
+ python manage.py makemigrations
 ```
 
 - Migrate Database
 ```bash
-$ python manage.py migrate
+ python manage.py migrate
 ```
 
 - Create a superuser
 ```bash
-$ python manage.py createsuperuser
+ python manage.py createsuperuser
 ```
 
 - Run server using
 ```bash
-$ python manage.py runserver
+ python manage.py runserver
 ``` 
 </details>
 
@@ -89,44 +89,44 @@ $ python manage.py runserver
 
 - **Configure AWS CLI:** Run the following command to configure your AWS CLI with your credentials:
 ```bash
-$ aws configure
+ aws configure
 ```
 
 - **Set up Elastic Beanstalk (EB):**
   - Install the EB CLI using pip:
     ```bash
-    $ pip install awsebcli
+     pip install awsebcli
     ```
   - Initialize your Elastic Beanstalk application:
     ```bash
-    $ eb init -p python-3.8 WorkX
+     eb init -p python-3.8 WorkX
     ```
     Replace `python-3.8` with your Python version.
   
 - **Deploy the application:**
   - Create an environment and deploy:
     ```bash
-    $ eb create workx-env
-    $ eb deploy
+     eb create workx-env
+     eb deploy
     ```
   - To open your application in the browser:
     ```bash
-    $ eb open
+     eb open
     ```
 
 - **Monitor and manage your application:**
   - View the status of your environment:
     ```bash
-    $ eb status
+     eb status
     ```
   - View logs:
     ```bash
-    $ eb logs
+     eb logs
     ```
 
 - **To terminate the environment:**
   ```bash
-  $ eb terminate workx-env
+   eb terminate workx-env
   ```
 
 For more detailed information, refer to the [AWS Elastic Beanstalk documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html).
