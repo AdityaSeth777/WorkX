@@ -1,0 +1,39 @@
+/* src/pages/BusinessDashboard.css */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #121212;
+  color: white;
+  padding: 20px;
+}
+
+.job-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
+
+.job-form input,
+.job-form textarea,
+.job-form select {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #1e1e1e;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.job-form button {
+  padding: 10px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
