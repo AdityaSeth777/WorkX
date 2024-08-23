@@ -7,6 +7,7 @@
 
 <div align="center">
 
+![](https://komarev.com/ghpvc/?username=RohanTech231&color=blue)
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![GitHub Issues](https://img.shields.io/github/issues/RohanTech231/WorkX.svg)](https://github.com/RohanTech231/WorkX/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/RohanTech231/WorkX.svg)](https://github.com/RohanTech231/WorkX/pulls)
