@@ -7,10 +7,10 @@
 
 <div align="center">
 
-![](https://komarev.com/ghpvc/?username=RohanTech231&color=blue)
+![](https://komarev.com/ghpvc/?username=AdityaSeth777&color=blue)
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/RohanTech231/WorkX.svg)](https://github.com/RohanTech231/WorkX/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/RohanTech231/WorkX.svg)](https://github.com/RohanTech231/WorkX/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/RohanTech231/WorkX.svg)](https://github.com/AdityaSeth777/WorkX/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/AdityaSeth777/WorkX.svg)](https://github.com/RohanTech231/WorkX/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -26,7 +26,7 @@
 - [About](#about)
 - [Setup](#setup)
 - [Deployment](#deployment)
-- [Built Using](#built_using)
+- [Built Using](#built)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
@@ -39,7 +39,8 @@ Additionally, Elasticsearch is used for advanced search functionalities, making 
 
 
 ## Setup
-
+<a name = "setup"></a>
+<p align="justify">
 <details>
   <summary><strong>Frontend Setup Instructions</strong></summary>
   
@@ -117,7 +118,8 @@ Additionally, Elasticsearch is used for advanced search functionalities, making 
 ``` 
 </details>
 
-## Deployment
+## Deployment <a name = "deployment"></a>
+<p align="justify">
 
 <details>
   <summary><strong>Deploying the Application on AWS</strong></summary>
@@ -173,7 +175,7 @@ For more detailed information, refer to the [AWS Elastic Beanstalk documentation
 </details>
 
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## ⛏️ Built Using <a name = "built"></a>
 
 ### Frontend:
 - React: For building the user interface.
@@ -215,11 +217,10 @@ For more detailed information, refer to the [AWS Elastic Beanstalk documentation
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@RohanTech231](https://github.com/RohanTech231) 
 - [@AdityaSeth777](https://github.com/AdityaSeth777)
+- [@RohanTech231](https://github.com/RohanTech231) 
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-- Hat tip to anyone whose code was used
 - Inspiration
 - References
