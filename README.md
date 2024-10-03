@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="./frontend/public/chobi512.png" alt="WorkX Logo"></a>
+ <img width=200px height=200px src="./WorkX.jpg" alt="WorkX Logo"></a>
 </p>
 
 <h3 align="center">WorkX</h3>
